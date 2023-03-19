@@ -39,10 +39,10 @@ https://github.com/AcademySoftwareFoundation/openexr/releases
 
 
 ## Usage <a name="usage"></a>
-To denoise a render, run the following command in main.py:
+To denoise a render, run the following command:
 
 ```python
-KPNModel().predict(filepath='<path/to/your/render.exr>', overlap=48)
+KPNModel().predict(filepath='path/to/your/render.exr', overlap=32)
 ```
 *An example render to test on is provided here: img/example/noisy_example.exr*
 
