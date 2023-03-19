@@ -52,10 +52,10 @@ The overlap argument specifies the pixel overlap for each 64x64 denoising sample
 ## Results <a name="results"></a>
 The KPN model is effective at reducing noise in low sample monte carlo renders, achieving results comparable to high sample count renders that would otherwise require significantly longer render times.
 
-![Results of denoising a complex character not part of the training dataset](img/results/witchdoctor.png)
+![An interior showcasing the diffuse noise reduction](img/results/livingroom.png)
+![Results of denoising a complex character](img/results/witchdoctor.png)
 ![Closeup showcasing the subsurface resolving nicely](img/results/witchdoctor_closeup.png)
 ![An interior with lots of indirect contribution](img/results/staircase.png)
-![Another interior](img/results/livingroom.png)
 
 - Noisy rendertime: ~45 seconds per frame
 - Ground truth rendertime: ~1.5 hours per frame
