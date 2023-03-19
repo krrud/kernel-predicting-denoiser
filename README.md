@@ -44,7 +44,7 @@ To denoise a render, run the following command in main.py:
 ```python
 KPNModel().predict(filepath='<path/to/your/render.exr>', overlap=48)
 ```
-*An example render to test on is provided here: img/example/noisy_render.exr*
+*An example render to test on is provided here: img/example/noisy_example.exr*
 
 The overlap argument specifies the pixel overlap for each 64x64 denoising sample used to mitigate artifacts at the edge of each predicted sample. A larger overlap will increase quality, memory requirements, and processing time. The denoised prediction(s) will be saved to the same directory with each file appended with a '_denoised' suffix.
 
