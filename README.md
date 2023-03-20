@@ -1,4 +1,4 @@
-# KPN Raytrace Denoiser 
+# KPN Denoiser for Raytraced Renders
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 
 
@@ -46,11 +46,11 @@ KPNModel().predict(filepath='path/to/your/render.exr', overlap=32)
 ```
 *An example render to test on is provided here: img/example/noisy_example.exr*
 
-The overlap argument specifies the pixel overlap for each 64x64 denoising sample used to mitigate artifacts at the edge of each predicted sample. A larger overlap will increase quality, memory requirements, and processing time. The denoised prediction(s) will be saved to the same directory with each file appended with a '_denoised' suffix.
+The overlap argument specifies the pixel overlap for each 64x64 denoising sample used to mitigate artifacts at the edge of each predicted sample. A larger overlap will increase quality, memory requirements, and processing time. The denoised prediction will be saved to the same directory appended with a '_denoised' suffix.
 
 
 ## Results <a name="results"></a>
-The KPN model is effective at reducing noise in low sample monte carlo renders, achieving results comparable to high sample count renders that would otherwise require significantly longer render times.
+The KPN model is effective at reducing noise in low sample monte carlo renders, achieving results comparable to high sample renders that would otherwise require significantly longer render times. See below for a few examples showcasing the model's denoising capabilites:
 
 ![An interior showcasing the diffuse noise reduction](img/results/livingroom.png)
 ![Results of denoising a complex character](img/results/witchdoctor.png)
@@ -83,7 +83,7 @@ The training dataset is not included as the multichannel exr's are quite large. 
 ## Data and Improvements <a name="data-and-improvements"></a>
 The KPN model takes two inputs: the first input contains the primary RGB channels to be denoised, and the second input is a series of utility passes output from the renderer to provide additional spatial context. The model uses two parallel convolutional processes, one for each input, which are concatenated and convolved with a predictive kernel to produce the denoised output. While the diffuse and specular models are identical in architecture, they differ in the primary RGB channels they were trained on.
 
-To train our models, we utilized approximately 100 1024x1024 pixel renders, each with both a noisy and ground truth version. The renders were generated using Arnold for Maya, with the noisy version output at 16 samples per pixel and the ground truth renders captured at 1024 samples per pixel. We divided each render into 64x64 pixel chunks and fed them into the network, using mini-batching during training to accommodate memory and hardware limitations.
+To train our models, we utilized approximately one-hundred 1024x1024 pixel renders, each with both a noisy and ground truth version. The renders were generated using Arnold for Maya, with the noisy version output at 16 samples per pixel and the ground truth renders captured at 1024 samples per pixel. We divided each render into 64x64 pixel chunks and fed them into the network, using mini-batching during training to accommodate memory and hardware limitations.
 
 Improvements could be made by expanding the dataset to include a more robust set of lighting setups and scenes to further generalize the model and improve accuracy. Additionally, incorporating temporal samples from surrounding frames in an animated sequence could help to stabilize predictions and further enhance the model's performance.
 

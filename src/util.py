@@ -597,7 +597,7 @@ def denoise_image(
         diffuse: Noisy diffuse array
         specular: Noisy specular array
         diff_denoiser: KPNNModel to denoise the diffuse channel
-        spec_denoiser: KPNNModel to denoise the cpecular channel
+        spec_denoiser: KPNNModel to denoise the specular channel
         patch_size: Size of the patches to be fed to the model
         overlap: Number of pixels to overlap each denoising patch """
     
